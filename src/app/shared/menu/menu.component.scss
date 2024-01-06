@@ -1,0 +1,119 @@
+.menu {
+    border-right: 1px solid #E1E1E1;
+    height: 100vh;
+    width: 269px;
+
+    .menu-wrapper {
+        .menu-body {
+            padding: 40px;
+
+            .logo-block {
+                display: flex;
+                align-items: center;
+                margin-bottom: 29px;
+
+                .logo-img img {
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .logo-title {
+                    color: #111;
+                    font-family: Sora;
+                    font-size: 16px;
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: -0.16px;
+
+                    .crypto {
+                        font-weight: 300;
+                    }
+
+                    .world {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .nav {
+                display: flex;
+                flex-direction: column;
+                gap: 45px;
+
+                .nav-section {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    .nav-section-title {
+                        color: #939393;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                        padding: 11px 24px;
+                    }
+
+                    .nav-items {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+
+                        .nav-item {
+                            max-width: 176px;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            gap: 13px;
+                            padding: 11px 24px;
+                            border-radius: 10px;
+
+
+
+                            .nav-item-icon {
+                                width: 24px;
+                                height: 24px;
+                                background-size: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;
+                            }
+
+                            .nav-item-text {
+                                color: #828282;
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: normal;
+                            }
+
+                            &:hover {
+                                background: #0096FF;
+
+                                .nav-item-text {
+                                    color: #DDD; // Change the color on hover
+                                }
+
+                                .nav-item-icon {
+                                    // filter: invert(100%);
+                                }
+                            }
+                        }
+
+                        .active {
+                            background: #0096FF;
+
+                            & img {
+                                filter: invert(99%) sepia(94%) saturate(363%) hue-rotate(215deg) brightness(113%) contrast(84%);
+
+                            }
+
+                            .nav-item-text {
+                                color: #DDD; // Change the color on hover
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
