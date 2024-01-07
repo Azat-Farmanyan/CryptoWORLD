@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoutingModule } from '../../app-routing.module';
 import {
@@ -38,6 +44,7 @@ export interface Menu {
   ],
 })
 export class MenuComponent implements OnInit {
+  @Output() onPageChange = new EventEmitter<string>();
   activeRoute: string = 'dashboard';
   menuOpened: boolean = true;
 
@@ -56,7 +63,7 @@ export class MenuComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    if (event.target.innerWidth > 600) {
+    if (event.target.innerWidth > 700) {
       this.menuOpened = true;
     } else {
       this.menuOpened = false;
@@ -123,6 +130,8 @@ export class MenuComponent implements OnInit {
     this.menu.Account.forEach((item) => (item.active = false));
 
     icon.active = true;
+
+    this.onPageChange.emit(icon.name);
   }
 
   onHover(icon: Icon): void {

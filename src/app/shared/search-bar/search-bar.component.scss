@@ -1,8 +1,10 @@
 .search-bar {
-    max-width: 30vw;
+    position: relative;
+    // max-width: 545px;
+    // width: 100%;
 
     .searchbar-body {
-        position: relative;
+        // min-width: 100%;
 
         & input {
             border-radius: 10px;
@@ -12,7 +14,7 @@
             width: 100%;
         }
 
-        .search-icon {
+        .search-icon img {
             position: absolute;
             right: 11px;
             top: 50%;

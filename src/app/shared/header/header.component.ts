@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
@@ -9,4 +9,6 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  @Input({ required: true }) activePage: string = '';
+}

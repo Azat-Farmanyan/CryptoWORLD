@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
 })
-export class SearchBarComponent {}
+export class SearchBarComponent {
+  onSearch() {
+    console.log('search clicked');
+  }
+}
