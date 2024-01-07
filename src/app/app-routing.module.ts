@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SettingsModule } from './pages/account/settings/settings.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -7,27 +8,36 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('../app/pages/dashboard/dashboard.module').then(
+      import('./pages/overview/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
   },
   {
     path: 'markets',
     loadChildren: () =>
-      import('../app/pages/market/market.module').then((m) => m.MarketModule),
+      import('./pages/overview/market/market.module').then(
+        (m) => m.MarketModule
+      ),
   },
   {
     path: 'trending',
     loadChildren: () =>
-      import('../app/pages/trending/trending.module').then(
+      import('./pages/overview/trending/trending.module').then(
         (m) => m.TrendingModule
       ),
   },
   {
     path: 'exchange',
     loadChildren: () =>
-      import('../app/pages/exchange/exchange.module').then(
+      import('./pages/overview/exchange/exchange.module').then(
         (m) => m.ExchangeModule
+      ),
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./pages/account/settings/settings.module').then(
+        (m) => m.SettingsModule
       ),
   },
   { path: '**', redirectTo: 'dashboard' },

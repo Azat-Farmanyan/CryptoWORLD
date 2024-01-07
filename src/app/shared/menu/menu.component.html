@@ -1,17 +1,19 @@
-<div class="menu">
+<div class="menu" [ngClass]="{'closed-menu': !menuOpened}">
+    <div class="close-menu" (click)="menuToggle()" [ngClass]="{'rotate-180': !menuOpened}">
+        <img src="../../../assets/icons/arrow.svg" alt="arrow">
+    </div>
     <div class="menu-wrapper">
         <div class="menu-body">
             <div class="logo-block">
                 <div class="logo-img">
                     <img src="../../../assets/icons/crypto_world_logo_small.png" alt="crypto_world">
                 </div>
-                <div class="logo-title">
+                <div class="logo-title" *ngIf="menuOpened" [@fadeInOut]>
                     <span class="crypto">Crypto</span>
                     <span class="world">WORLD</span>
                 </div>
             </div>
             <div class="nav">
-
                 <div class="nav-section disable-text-select">
                     <h5 class="nav-section-title">Overview</h5>
                     <div class="nav-items">
@@ -21,13 +23,26 @@
                             <div class="nav-item-icon"
                                 [ngStyle]="{'background-image': icon.active ? 'url(' + icon.white + ')' : 'url(' + icon.dark + ')'}">
                             </div>
-                            <p class="nav-item-text">{{ icon.name | titlecase }}</p>
-
+                            <p class="nav-item-text" *ngIf="menuOpened" [@fadeInOut]>{{ icon.name | titlecase }}</p>
                         </div>
                         }
                     </div>
                 </div>
 
+                <div class="nav-section disable-text-select">
+                    <h5 class="nav-section-title">Account</h5>
+                    <div class="nav-items">
+                        @for (icon of menu.Account; track icon.name) {
+                        <div class="nav-item" (click)="setActive(icon)" (mouseenter)="onHover(icon)"
+                            (mouseleave)="onLeave(icon)" [routerLink]="icon.name" routerLinkActive="active">
+                            <div class="nav-item-icon"
+                                [ngStyle]="{'background-image': icon.active ? 'url(' + icon.white + ')' : 'url(' + icon.dark + ')'}">
+                            </div>
+                            <p class="nav-item-text" *ngIf="menuOpened">{{ icon.name | titlecase }}</p>
+                        </div>
+                        }
+                    </div>
+                </div>
 
             </div>
 

@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoutingModule } from '../../app-routing.module';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export interface Icon {
   name: string;
@@ -18,16 +26,41 @@ export interface Menu {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, AppRoutingModule],
+  imports: [CommonModule, AppRoutingModule, BrowserAnimationsModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter', [animate('1000ms ease-out', style({ opacity: 1 }))]),
+      transition(':leave', [animate('0ms ease-in', style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class MenuComponent implements OnInit {
   activeRoute: string = 'dashboard';
+  menuOpened: boolean = true;
+
+  public innerWidth: any;
+
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.navigate(this.menu.Overview[0]); //dashboard
+    this.innerWidth = window.innerWidth;
+
+    if (window.innerWidth < 600) {
+      this.menuOpened = false;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (event.target.innerWidth > 600) {
+      this.menuOpened = true;
+    } else {
+      this.menuOpened = false;
+    }
   }
 
   navigate(icon: Icon) {
@@ -99,5 +132,9 @@ export class MenuComponent implements OnInit {
     if (icon.name !== this.activeRoute) {
       icon.active = false;
     }
+  }
+
+  menuToggle() {
+    this.menuOpened = !this.menuOpened;
   }
 }
