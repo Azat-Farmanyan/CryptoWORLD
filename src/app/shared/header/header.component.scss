@@ -1,0 +1,21 @@
+.header {
+    padding: 43px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+
+    .header-title {
+        color: #111;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.32px;
+    }
+
+    .search-bar {
+        margin-left: 20px;
+    }
+
+}
