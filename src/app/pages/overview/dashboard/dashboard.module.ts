@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-
+import { CryptoCardSmallComponent } from '../../../shared/crypto-card-small/crypto-card-small.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    DashboardComponent
-  ],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule
-  ]
+    DashboardRoutingModule,
+    CryptoCardSmallComponent,
+    HttpClientModule,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

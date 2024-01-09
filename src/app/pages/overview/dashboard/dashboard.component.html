@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<div class="dashboard" #dashboardElement>
+    <div class="dashboard-body">
+        @for (coin of trendingCoins; track coin.id) {
+        <app-crypto-card-small [coinData]="coin" [isLoading]="trendCoinsLoading"></app-crypto-card-small>
+        }
+        <!-- <app-crypto-card-small></app-crypto-card-small>
+        <app-crypto-card-small></app-crypto-card-small> -->
+    </div>
+</div>

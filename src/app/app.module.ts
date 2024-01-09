@@ -5,10 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, MenuComponent, HeaderComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MenuComponent,
+    HeaderComponent,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

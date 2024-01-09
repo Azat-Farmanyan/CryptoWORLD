@@ -1,9 +1,10 @@
 .menu {
     border-right: 1px solid #E1E1E1;
-    height: 100vh;
+    height: 100%;
     width: 269px;
     position: relative;
     transition: all 1s ease-in-out;
+    position: sticky;
 
     .rotate-180 {
         transform: rotate(180deg);
@@ -36,6 +37,7 @@
     }
 
     .menu-wrapper {
+
         .menu-body {
             padding: 40px;
 
