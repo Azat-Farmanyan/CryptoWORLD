@@ -6,5 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MenuParamsService {
   menuIsOpen = new BehaviorSubject<boolean>(window.innerWidth > 700);
+
   constructor() {}
 }

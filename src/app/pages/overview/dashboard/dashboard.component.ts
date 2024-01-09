@@ -44,15 +44,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.menuIsOpenSubs = this.menuParamsService.menuIsOpen.subscribe(
       (menuIsOpenRes) => {
         this.menuIsOpen = menuIsOpenRes;
-        console.log(this.menuIsOpen);
+        console.log('menuIsOpenSubs');
+
         this.windowWidthSubs = this.windowParamsService.windowWidth.subscribe(
           (widthRes) => {
             if (this.menuIsOpen) {
+              console.log('menu is opened');
+
               this.dashboardViewportWidth = widthRes - 269;
             } else {
+              console.log('menu is closed');
+
               this.dashboardViewportWidth = widthRes - 100;
             }
-            console.log(this.dashboardViewportWidth, this.menuIsOpen);
+            console.log('window Width Subs');
+
+            // console.log(this.dashboardViewportWidth, this.menuIsOpen);
           }
         );
       }
@@ -73,7 +80,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.windowWidthSubs.unsubscribe();
+    console.log('destroy');
+
+    // this.windowWidthSubs.unsubscribe();
     this.menuIsOpenSubs.unsubscribe();
   }
 }

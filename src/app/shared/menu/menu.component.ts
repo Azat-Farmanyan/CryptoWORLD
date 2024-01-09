@@ -69,7 +69,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getWindowInnerwidth();
-    this.navigate(this.menu.Overview[0]); //dashboard
+    this.navigateToDashboard(this.menu.Overview[0]); //dashboard
     this.innerWidth = window.innerWidth;
 
     if (window.innerWidth < 600) {
@@ -81,7 +81,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   onResize(event: any) {
     this.windowParamsService.windowWidth.next(event.target.innerWidth);
 
-    if (event.target.innerWidth > 700) {
+    if (event.target.innerWidth > 800) {
       this.menuOpened = true;
       this.menuParamsService.menuIsOpen.next(true);
     } else {
@@ -98,7 +98,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     );
   }
 
-  navigate(icon: Icon) {
+  navigateToDashboard(icon: Icon) {
     this.router.navigate([icon.name]);
     this.setActive(this.menu.Overview[0]);
   }
