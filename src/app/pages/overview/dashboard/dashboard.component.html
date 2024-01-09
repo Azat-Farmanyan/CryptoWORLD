@@ -1,5 +1,5 @@
-<div class="dashboard" #dashboardElement>
-    <div class="dashboard-body">
+<div class="dashboard">
+    <div class="dashboard-body" [style.grid-template-columns]="getGridColumnStyles()">
         @for (coin of trendingCoins; track coin.id) {
         <app-crypto-card-small [coinData]="coin" [isLoading]="trendCoinsLoading"></app-crypto-card-small>
         }

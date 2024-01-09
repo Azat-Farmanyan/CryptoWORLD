@@ -3,8 +3,13 @@ import {
   Component,
   EventEmitter,
   HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
+  inject,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRoutingModule } from '../../app-routing.module';
@@ -16,6 +21,9 @@ import {
   animate,
 } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WindowParamsService } from '../../services/windowParams.service';
+import { Subscription } from 'rxjs';
+import { MenuParamsService } from '../../services/menuParams.service';
 
 export interface Icon {
   name: string;
@@ -43,16 +51,24 @@ export interface Menu {
     ]),
   ],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
+  // injected items
+  router = inject(Router);
+  windowParamsService = inject(WindowParamsService);
+  menuParamsService = inject(MenuParamsService);
+
+  // subscription
+  windowWidthSubs: Subscription;
+
   @Output() onPageChange = new EventEmitter<string>();
+
   activeRoute: string = 'dashboard';
   menuOpened: boolean = true;
 
-  public innerWidth: any;
-
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  innerWidth: number = 0;
 
   ngOnInit(): void {
+    this.getWindowInnerwidth();
     this.navigate(this.menu.Overview[0]); //dashboard
     this.innerWidth = window.innerWidth;
 
@@ -63,11 +79,23 @@ export class MenuComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
+    this.windowParamsService.windowWidth.next(event.target.innerWidth);
+
     if (event.target.innerWidth > 700) {
       this.menuOpened = true;
+      this.menuParamsService.menuIsOpen.next(true);
     } else {
       this.menuOpened = false;
+      this.menuParamsService.menuIsOpen.next(false);
     }
+  }
+
+  getWindowInnerwidth() {
+    this.windowWidthSubs = this.windowParamsService.windowWidth.subscribe(
+      (width) => {
+        this.innerWidth = width;
+      }
+    );
   }
 
   navigate(icon: Icon) {
@@ -145,5 +173,10 @@ export class MenuComponent implements OnInit {
 
   menuToggle() {
     this.menuOpened = !this.menuOpened;
+    this.menuParamsService.menuIsOpen.next(this.menuOpened);
+  }
+
+  ngOnDestroy(): void {
+    this.windowWidthSubs.unsubscribe();
   }
 }

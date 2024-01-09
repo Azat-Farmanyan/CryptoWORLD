@@ -23,7 +23,7 @@ export class CryptoCardSmallComponent implements OnChanges {
   changeIn24h: number = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.coinData);
+    // console.log(this.coinData);
     this.changeIn24h =
       this.coinData?.item?.data?.price_change_percentage_24h?.usd;
   }

@@ -3,18 +3,18 @@
 
     .dashboard-body {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        // grid-template-columns: repeat(3, 1fr);
         gap: 26px;
         padding-bottom: 50px;
 
-        @media only screen and (max-width: 1250px) {
-            grid-template-columns: repeat(2, 1fr); // Create two equal columns
-            // gap: 16px;
-        }
+        // @media only screen and (max-width: 1250px) {
+        //     grid-template-columns: repeat(2, 1fr); // Create two equal columns
+        //     // gap: 16px;
+        // }
 
-        @media only screen and (max-width: 920px) {
-            grid-template-columns: repeat(1, 1fr); // Create one equal columns
-        }
+        // @media only screen and (max-width: 920px) {
+        //     grid-template-columns: repeat(1, 1fr); // Create one equal columns
+        // }
 
         grid-auto-flow: row;
         justify-content: space-evenly;
