@@ -1,0 +1,24 @@
+<div class="trending-item">
+    @if (Data) {
+    <div class="name">
+        <img [src]="Data?.item?.small" [alt]="Data?.name">
+        {{Data?.item?.name}}
+        {{Data?.item?.symbol}}
+    </div>
+    <div class="info-block">
+
+        <div class="price">
+            {{Data?.item?.data?.price}}
+        </div>
+        <div class="1h">undefined</div>
+        <div class="24h">undefined</div>
+        <div class="7d">undefined</div>
+        <div class="24h-volume">
+            {{Data?.item?.data?.total_volume}}
+        </div>
+        <div class="market-cap">
+            {{Data?.item?.data?.market_cap}}
+        </div>
+    </div>
+    }
+</div>

@@ -1,1 +1,55 @@
-<p>trending works!</p>
+<div class="crypto-table">
+    <!-- Fixed first column -->
+    <div class="fixed-column">
+        <div class="column-title">Coin</div>
+        @for (coin of trendingCoins; track coin._id) {
+        <div class="coin-item">
+            <img class="coin-img" [src]="coin?.item?.small" alt="">
+            <div class="coin-item-title">
+                <h6>{{ coin?.item?.name }}</h6>
+                <p>{{ coin?.item?.symbol }}</p>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="scrollable-content">
+        <div class="info-column">
+            <div class="column-title">Price</div>
+            @for (coin of trendingCoins; track coin._id) {
+            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            }
+        </div>
+        <div class="info-column">
+            <div class="column-title">1h</div>
+            @for (coin of trendingCoins; track coin._id) {
+            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            }
+        </div>
+        <div class="info-column">
+            <div class="column-title">24h</div>
+            @for (coin of trendingCoins; track coin._id) {
+            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            }
+        </div>
+        <div class="info-column">
+            <div class="column-title">7d</div>
+            @for (coin of trendingCoins; track coin._id) {
+            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            }
+        </div>
+        <div class="info-column">
+            <div class="column-title">24h Volume</div>
+            @for (coin of trendingCoins; track coin._id) {
+            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            }
+        </div>
+        <div class="info-column">
+            <div class="column-title">Market Cap</div>
+            @for (coin of trendingCoins; track coin._id) {
+            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            }
+        </div>
+    </div>
+</div>

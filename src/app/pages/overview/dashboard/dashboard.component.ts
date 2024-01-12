@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CoinsService } from '../../../services/coins.service';
-import { Subscription, delay } from 'rxjs';
+import { Subscription, delay, tap } from 'rxjs';
 import { TrendingService } from '../../../services/trending.service';
 import { WindowParamsService } from '../../../services/windowParams.service';
 import { MenuParamsService } from '../../../services/menuParams.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   trendingService = inject(TrendingService);
   windowParamsService = inject(WindowParamsService);
   menuParamsService = inject(MenuParamsService);
+  router = inject(Router);
 
   windowWidthSubs: Subscription;
   menuIsOpenSubs: Subscription;
@@ -23,7 +25,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   menuIsOpen: boolean = false;
 
   dashboardViewportWidth: number = 0;
-  // constructor(private DashboardService: ) {}
 
   ngOnInit(): void {
     this.getWindowInnerwidth();
@@ -31,12 +32,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getTrendingCoins() {
-    this.trendingService.getTrendingCoins().subscribe((res) => {
-      this.trendingCoins = res.coins;
+    this.trendingService
+      .getTrendingCoins(3)
 
-      console.log(res);
+      .subscribe((res) => {
+        console.log(res);
 
-      this.trendCoinsLoading = false;
+        this.trendingCoins = res;
+        this.trendCoinsLoading = false;
+      });
+  }
+
+  navigate(path: string) {
+    this.router.navigate([path]);
+    this.menuParamsService.setActiveRoute({
+      activeRoute: path,
+      fromMenu: false,
     });
   }
 
@@ -44,22 +55,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.menuIsOpenSubs = this.menuParamsService.menuIsOpen.subscribe(
       (menuIsOpenRes) => {
         this.menuIsOpen = menuIsOpenRes;
-        console.log('menuIsOpenSubs');
 
         this.windowWidthSubs = this.windowParamsService.windowWidth.subscribe(
           (widthRes) => {
-            if (this.menuIsOpen) {
-              console.log('menu is opened');
-
-              this.dashboardViewportWidth = widthRes - 269;
-            } else {
-              console.log('menu is closed');
-
-              this.dashboardViewportWidth = widthRes - 100;
-            }
-            console.log('window Width Subs');
-
-            // console.log(this.dashboardViewportWidth, this.menuIsOpen);
+            this.menuIsOpen
+              ? (this.dashboardViewportWidth = widthRes - 269)
+              : (this.dashboardViewportWidth = widthRes - 100);
           }
         );
       }
@@ -82,7 +83,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('destroy');
 
-    // this.windowWidthSubs.unsubscribe();
-    this.menuIsOpenSubs.unsubscribe();
+    if (this.menuIsOpenSubs) this.menuIsOpenSubs.unsubscribe();
   }
 }

@@ -1,0 +1,28 @@
+.trending-item {
+    display: grid;
+    grid-template-columns: 1fr 6fr; // First block takes 1/7, second block takes 6/7
+    text-align: center;
+    gap: 10px;
+
+    // display: flex;
+    // flex-direction: row;
+
+    color: #111;
+    font-family: Sora;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.18px;
+
+
+    .info-block {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); // Creates 7 equal-width columns
+        text-align: center;
+        gap: 10px;
+
+        overflow-x: scroll;
+
+    }
+}

@@ -1,8 +1,21 @@
 <div class="dashboard">
-    <div class="dashboard-body" [style.grid-template-columns]="getGridColumnStyles()">
-        @for (coin of trendingCoins; track coin.id) {
-        <app-crypto-card-small [coinData]="coin" [isLoading]="trendCoinsLoading"></app-crypto-card-small>
-        }
+    <div class="dashboard-body">
+        <div class="trending-block">
+            <h3 class="block-header">
+                <h3>Trending cryptos</h3>
+
+                <div (click)="navigate('trending')">
+                    <span>See all</span>
+                    <img src="../../../../assets/icons/see_all_arrow.svg" alt="see all">
+                </div>
+            </h3>
+
+            <div class="trending-body" [style.grid-template-columns]="getGridColumnStyles()">
+                @for (coin of trendingCoins; track coin.id) {
+                <app-crypto-card-small [coinData]="coin" [isLoading]="trendCoinsLoading"></app-crypto-card-small>
+                }
+            </div>
+        </div>
         <!-- <app-crypto-card-small></app-crypto-card-small>
         <app-crypto-card-small></app-crypto-card-small> -->
     </div>

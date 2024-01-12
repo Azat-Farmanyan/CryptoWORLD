@@ -54,11 +54,14 @@ export interface Menu {
 export class MenuComponent implements OnInit, OnDestroy {
   // injected items
   router = inject(Router);
+  route = inject(ActivatedRoute);
   windowParamsService = inject(WindowParamsService);
   menuParamsService = inject(MenuParamsService);
 
   // subscription
   windowWidthSubs: Subscription;
+  menuSubs: Subscription;
+  getActiveRouteSubs: Subscription;
 
   @Output() onPageChange = new EventEmitter<string>();
 
@@ -66,15 +69,31 @@ export class MenuComponent implements OnInit, OnDestroy {
   menuOpened: boolean = true;
 
   innerWidth: number = 0;
+  href: string = '';
 
   ngOnInit(): void {
     this.getWindowInnerwidth();
-    this.navigateToDashboard(this.menu.Overview[0]); //dashboard
+    this.navigateToDashboard(this.menu.Overview[2]); //dashboard
+    this.getActiveRoute();
     this.innerWidth = window.innerWidth;
+  }
 
-    if (window.innerWidth < 600) {
-      this.menuOpened = false;
-    }
+  getActiveRoute() {
+    this.getActiveRouteSubs = this.menuParamsService
+      .getActiveRoute()
+      .subscribe((route) => {
+        this.activeRoute = route.activeRoute;
+
+        console.log('active route from MENU SERVICE: ', this.activeRoute);
+
+        const icon: Icon | undefined = this.getIconByName(
+          this.menu,
+          this.activeRoute
+        );
+        console.log(icon);
+
+        if (icon) this.setActive(icon, true);
+      });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -100,7 +119,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   navigateToDashboard(icon: Icon) {
     this.router.navigate([icon.name]);
-    this.setActive(this.menu.Overview[0]);
+    this.setActive(this.menu.Overview[0], true);
   }
 
   menu: Menu = {
@@ -140,6 +159,21 @@ export class MenuComponent implements OnInit, OnDestroy {
     ],
   };
 
+  getIconByName(menu: Menu, iconName: string): Icon | undefined {
+    for (const sectionKey in menu) {
+      if (menu.hasOwnProperty(sectionKey)) {
+        const section = menu[sectionKey as keyof Menu];
+        const icon = section.find((item) => item.name === iconName);
+
+        if (icon) {
+          return icon;
+        }
+      }
+    }
+
+    return undefined; // Return undefined if the icon with the given name is not found
+  }
+
   onMouseEnter(icon: Icon) {
     if (!icon.active) {
       icon.active = true;
@@ -152,14 +186,18 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  setActive(icon: Icon): void {
-    this.activeRoute = icon.name;
+  setActive(icon: Icon, fromMenu: boolean): void {
+    console.log('set active');
+
     this.menu.Overview.forEach((item) => (item.active = false));
     this.menu.Account.forEach((item) => (item.active = false));
-
     icon.active = true;
 
     this.onPageChange.emit(icon.name);
+
+    if (fromMenu === false) {
+      console.log(this.menu);
+    }
   }
 
   onHover(icon: Icon): void {
@@ -174,9 +212,13 @@ export class MenuComponent implements OnInit, OnDestroy {
   menuToggle() {
     this.menuOpened = !this.menuOpened;
     this.menuParamsService.menuIsOpen.next(this.menuOpened);
+
+    console.log(this.menu);
   }
 
   ngOnDestroy(): void {
-    this.windowWidthSubs.unsubscribe();
+    if (this.windowWidthSubs) this.windowWidthSubs.unsubscribe();
+    if (this.menuSubs) this.menuSubs.unsubscribe();
+    if (this.getActiveRouteSubs) this.getActiveRouteSubs.unsubscribe();
   }
 }

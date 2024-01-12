@@ -12,6 +12,6 @@ export class AppComponent {
 
   setActivePage(page: string) {
     this.activePage = page;
-    console.log(this.activePage);
+    // console.log(this.activePage);
   }
 }

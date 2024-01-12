@@ -34,3 +34,53 @@ body {
 
     background: #F9F9F9;
 }
+
+.block-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 25px;
+
+    & div {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-top: 2px;
+
+        &:hover {
+            & span {
+                font-weight: 400;
+            }
+        }
+    }
+
+    & h3 {
+        color: #111;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.24px;
+        margin-right: 13px;
+    }
+
+    & span {
+        color: #111;
+        font-family: Sora;
+        font-size: 16x;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        letter-spacing: -0.14px;
+        margin-right: 5px;
+
+        &:hover {
+            font-weight: 400;
+        }
+    }
+
+    & img {
+        width: 6px;
+        object-fit: cover;
+    }
+}
