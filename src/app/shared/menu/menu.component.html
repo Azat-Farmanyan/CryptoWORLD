@@ -22,9 +22,10 @@
                             @for (icon of menu.Overview; track icon.name) {
                             <div class="nav-item" (click)="setActive(icon, true)" (mouseenter)="onHover(icon)"
                                 (mouseleave)="onLeave(icon)" [routerLink]="icon.name" routerLinkActive="active">
-                                <div class="nav-item-icon"
-                                    [ngStyle]="{'background-image': icon.active ? 'url(' + icon.white + ')' : 'url(' + icon.dark + ')'}">
+
+                                <div class="nav-item-icon" [ngStyle]="{'background-image': 'url(' + icon.dark + ')'}">
                                 </div>
+
                                 <p class="nav-item-text" *ngIf="menuOpened" [@fadeInOut]>{{ icon.name | titlecase }}</p>
                             </div>
                             }
@@ -37,8 +38,7 @@
                             @for (icon of menu.Account; track icon.name) {
                             <div class="nav-item" (click)="setActive(icon, true)" (mouseenter)="onHover(icon)"
                                 (mouseleave)="onLeave(icon)" [routerLink]="icon.name" routerLinkActive="active">
-                                <div class="nav-item-icon"
-                                    [ngStyle]="{'background-image': icon.active ? 'url(' + icon.white + ')' : 'url(' + icon.dark + ')'}">
+                                <div class="nav-item-icon" [ngStyle]="{'background-image': 'url(' + icon.dark + ')'}">
                                 </div>
                                 <p class="nav-item-text" *ngIf="menuOpened">{{ icon.name | titlecase }}</p>
                             </div>

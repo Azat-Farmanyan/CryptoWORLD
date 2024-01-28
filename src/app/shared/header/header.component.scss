@@ -3,6 +3,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 
     .header-title {
         color: #111;
@@ -18,7 +20,8 @@
     }
 
     .search-bar {
-        margin-left: 20px;
+        // margin-left: 20px;
         flex-basis: 50%;
+        min-width: 185px;
     }
 }

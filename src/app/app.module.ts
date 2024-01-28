@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     MenuComponent,
     HeaderComponent,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

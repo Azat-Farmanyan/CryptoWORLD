@@ -37,6 +37,9 @@
             transition: all 0.5s ease;
 
             &:hover {
+                // outline: 2px solid #0096FF;
+                // border-radius: 0;
+
                 background-color: #0096FF;
             }
 
@@ -132,29 +135,18 @@
                                 }
 
                                 &:hover {
-                                    background: #0096FF;
+                                    outline: 2px solid #939393;
+                                    border-radius: 10px;
+                                    background-color: #fff;
 
-                                    .nav-item-text {
-                                        color: #DDD; // Change the color on hover
-                                    }
-
-                                    .nav-item-icon {
-                                        // filter: invert(100%);
-                                    }
                                 }
                             }
 
                             .active {
-                                background: #0096FF;
+                                outline: 2px solid #939393;
+                                border-radius: 10px;
+                                background-color: #fff;
 
-                                & img {
-                                    filter: invert(99%) sepia(94%) saturate(363%) hue-rotate(215deg) brightness(113%) contrast(84%);
-
-                                }
-
-                                .nav-item-text {
-                                    color: #DDD; // Change the color on hover
-                                }
                             }
                         }
                     }

@@ -1,8 +1,14 @@
 <div class="search-bar">
     <div class="searchbar-body">
-        <input type="text" placeholder="Search Any things">
-        <button class="search-icon" (click)="onSearch()">
+        <input type="text" placeholder="Search Any things" [(ngModel)]="searchedWord" (input)="onInput()">
+        @if (searchedWord.length===0) {
+        <button class="search-icon" (click)="onInput()">
             <img src="../../../assets/icons/search-normal.svg" alt="search">
         </button>
+        } @else {
+        <button class="search-icon" (click)="onCancel()">
+            <img src="../../../assets/icons/close.svg" alt="search">
+        </button>
+        }
     </div>
 </div>

@@ -1,3 +1,9 @@
+@if (trendCoinsLoading) {
+<app-loading></app-loading>
+} @else {
+@if (trendingCoins.length===0) {
+<app-no-result-found></app-no-result-found>
+}@else {
 <div class="crypto-table">
     <!-- Fixed first column -->
     <div class="fixed-column">
@@ -15,6 +21,7 @@
 
     <!-- Scrollable content -->
     <div class="scrollable-content">
+
         <div class="info-column">
             <div class="column-title">Price</div>
             @for (coin of trendingCoins; track coin._id) {
@@ -53,3 +60,7 @@
         </div>
     </div>
 </div>
+
+}
+
+}
