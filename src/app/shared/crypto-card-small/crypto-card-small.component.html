@@ -32,7 +32,13 @@
         <div class="card-body">
             <div class="diagram"></div>
             <div class="crypto-currency-block">
-                <p class="price">{{ coinData?.item?.data?.price || coinData?.current_price | currency:'$'}}</p>
+                @if (coinData?.current_price) {
+                <p class="price">{{ coinData?.current_price | currency:'$'}}</p>
+
+                } @else {
+                <p class="price">{{ coinData?.item?.data?.price }}</p>
+
+                }
 
                 <div class="percent">
                     <p class="percent-txt">{{changeIn24h | number:'1.1-1'}}%</p>
