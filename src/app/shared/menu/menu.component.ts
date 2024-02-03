@@ -73,7 +73,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getWindowInnerwidth();
-    this.navigateToDashboard(this.menu.Overview[1]); //dashboard
+    this.navigateToDashboard(this.menu.Overview[0]); // open page
     this.getActiveRoute();
     this.innerWidth = window.innerWidth;
   }
