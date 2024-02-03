@@ -4,6 +4,17 @@
 @if (trendingCoins.length===0) {
 <app-no-result-found></app-no-result-found>
 }@else {
+
+<!-- {{ windowParamsService.windowWidth | async }}
+{{ MenuParamsService.menuIsOpen | async }}
+
+{{"windowParamsService.contentWidth"}} -->
+
+<!-- {{ windowParamsService.contentWidth | async }}
+{{ contentWidth }} -->
+
+
+<!-- [style.width.px]="contentWidth" -->
 <div class="crypto-table">
     <!-- Fixed first column -->
     <div class="fixed-column">
@@ -60,7 +71,5 @@
         </div>
     </div>
 </div>
-
 }
-
 }

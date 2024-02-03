@@ -1,0 +1,11 @@
+.market-block {
+    width: 100%;
+
+    .market-body {
+        display: grid;
+        gap: 26px;
+        padding-bottom: 50px;
+        grid-auto-flow: row;
+        justify-content: space-evenly;
+    }
+}

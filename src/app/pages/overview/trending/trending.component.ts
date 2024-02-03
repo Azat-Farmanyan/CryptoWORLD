@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { TrendingService } from '../../../services/trending.service';
 import { Subscription } from 'rxjs';
 import { SearchService } from '../../../shared/search-bar/search.service';
+import { WindowParamsService } from '../../../services/windowParams.service';
+import { MenuParamsService } from '../../../services/menuParams.service';
 
 @Component({
   selector: 'app-trending',
@@ -11,24 +13,28 @@ import { SearchService } from '../../../shared/search-bar/search.service';
 export class TrendingComponent implements OnInit, OnDestroy {
   trendingService = inject(TrendingService);
   searchService = inject(SearchService);
+  windowParamsService = inject(WindowParamsService);
+  MenuParamsService = inject(MenuParamsService);
 
   trendCoinsLoading: boolean = true;
   trendingCoins: any[] = [];
   originalTrendingCoins: any[] = [];
+  contentWidth: number = 0;
 
   trendingServiceSubs: Subscription;
   searchWordSubs: Subscription;
+  contentWidthSubs: Subscription;
 
   searchedWord = '';
   ngOnInit(): void {
     this.getTrendingCoins();
+    this.getContentWidth();
   }
 
   getTrendingCoins() {
     this.trendingServiceSubs = this.trendingService
       .getTrendingCoins()
       .subscribe((res) => {
-        console.log(res);
         this.originalTrendingCoins = res;
         this.trendingCoins = res;
         this.trendCoinsLoading = false;
@@ -42,9 +48,15 @@ export class TrendingComponent implements OnInit, OnDestroy {
       });
   }
 
-  filterData(searchedWord: string) {
-    console.log(this.trendingCoins);
+  getContentWidth() {
+    this.windowParamsService.contentWidth.subscribe((contentWidth) => {
+      console.log(contentWidth);
 
+      this.contentWidth = contentWidth;
+    });
+  }
+
+  filterData(searchedWord: string) {
     if (searchedWord.length === 0) {
       this.trendingCoins = this.originalTrendingCoins;
     } else {

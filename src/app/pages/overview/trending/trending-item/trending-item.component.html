@@ -1,9 +1,17 @@
 <div class="trending-item">
     @if (Data) {
     <div class="name">
+        @if (Data?.image) {
+        <img [src]="Data?.image" [alt]="Data?.name">
+        {{Data?.item?.name}}
+        {{Data?.item?.symbol}}
+        } @else {
         <img [src]="Data?.item?.small" [alt]="Data?.name">
         {{Data?.item?.name}}
         {{Data?.item?.symbol}}
+        }
+
+
     </div>
     <div class="info-block">
 

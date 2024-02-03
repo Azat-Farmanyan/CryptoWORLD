@@ -1,1 +1,15 @@
-<p>market works!</p>
+@if (marketCoinsLoading) {
+<app-loading></app-loading>
+}@else {
+@if (marketCoins.length===0) {
+<app-no-result-found></app-no-result-found>
+}@else {
+<div class="market-block">
+    <div class="market-body" [style.grid-template-columns]="getGridColumnStyles()">
+        @for (coin of marketCoins; track coin.id) {
+        <app-crypto-card-small [coinData]="coin" [isLoading]="marketCoinsLoading"></app-crypto-card-small>
+        }
+    </div>
+</div>
+}
+}

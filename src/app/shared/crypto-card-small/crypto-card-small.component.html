@@ -17,22 +17,28 @@
         } @else {
         <div class="card-header">
             <div class="crypto-icon">
+                @if (coinData?.item?.small) {
                 <img [src]="coinData?.item?.small" alt="">
+                } @else {
+                <img [src]="coinData?.image" alt="">
+                }
+
             </div>
             <div class="crypto-title-block">
-                <h4 class="crypto-title">{{coinData?.item?.name | titlecase}}</h4>
-                <h6 class="crypto-abbreviation">{{coinData?.item?.symbol | uppercase}}</h6>
+                <h4 class="crypto-title">{{coinData?.item?.name??coinData?.name | titlecase}}</h4>
+                <h6 class="crypto-abbreviation">{{coinData?.item?.symbol ?? coinData?.symbol | uppercase}}</h6>
             </div>
         </div>
         <div class="card-body">
             <div class="diagram"></div>
             <div class="crypto-currency-block">
-                <p class="price">{{ coinData?.item?.data?.price }}</p>
+                <p class="price">{{ coinData?.item?.data?.price || coinData?.current_price | currency:'$'}}</p>
+
                 <div class="percent">
                     <p class="percent-txt">{{changeIn24h | number:'1.1-1'}}%</p>
                     <div class="percent-icon">
 
-                        <img class="percent-icon-bg" [src]="coinData?.item?.small" alt="">
+                        <img class="percent-icon-bg" [src]="coinData?.item?.small ?? coinData?.image" alt="">
 
                         <img class="percent-icon-arrow" [ngClass]="{'down-arrow': changeIn24h < 0}"
                             src="../../../assets/icons/percent-arrow-icon.svg" alt="">

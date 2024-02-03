@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   windowWidthSubs: Subscription;
   menuIsOpenSubs: Subscription;
+  trendingCoinsSubs: Subscription;
 
   trendingCoins: any[] = [];
   trendCoinsLoading: boolean = true;
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getTrendingCoins() {
-    this.trendingService
+    this.trendingCoinsSubs = this.trendingService
       .getTrendingCoins(3)
 
       .subscribe((res) => {
@@ -84,5 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('destroy');
 
     if (this.menuIsOpenSubs) this.menuIsOpenSubs.unsubscribe();
+
+    if (this.trendingCoinsSubs) this.trendingCoinsSubs.unsubscribe();
   }
 }
