@@ -1,5 +1,5 @@
 @if (trendCoinsLoading) {
-<app-loading></app-loading>
+<app-loading (onReload)="getTrendingCoins()"></app-loading>
 } @else {
 @if (trendingCoins.length===0) {
 <app-no-result-found></app-no-result-found>
@@ -15,7 +15,11 @@
 
 
 <!-- [style.width.px]="contentWidth" -->
-<div class="crypto-table">
+
+{{ windowParamsService.contentWidth | async }}
+{{ windowParamsService.windowWidth | async }}
+
+<div class="crypto-table" [ngStyle]="{'max-width.px': contentWidth}">
     <!-- Fixed first column -->
     <div class="fixed-column">
         <div class="column-title">Coin</div>

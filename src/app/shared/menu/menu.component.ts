@@ -82,15 +82,17 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.getActiveRouteSubs = this.menuParamsService
       .getActiveRoute()
       .subscribe((route) => {
+        this.checkMenuIsOpenAndSetContentWidth();
+
         this.activeRoute = route.activeRoute;
 
-        console.log('active route from MENU SERVICE: ', this.activeRoute);
+        // console.log('active route from MENU SERVICE: ', this.activeRoute);
 
         const icon: Icon | undefined = this.getIconByName(
           this.menu,
           this.activeRoute
         );
-        console.log(icon);
+        // console.log(icon);
 
         if (icon) this.setActive(icon, true);
       });
@@ -107,6 +109,8 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.menuOpened = false;
       this.menuParamsService.menuIsOpen.next(false);
     }
+
+    this.checkMenuIsOpenAndSetContentWidth();
   }
 
   getWindowInnerwidth() {
@@ -187,7 +191,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   setActive(icon: Icon, fromMenu: boolean): void {
-    console.log('set active');
+    // console.log('set active');
 
     this.menu.Overview.forEach((item) => (item.active = false));
     this.menu.Account.forEach((item) => (item.active = false));
@@ -196,7 +200,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.onPageChange.emit(icon.name);
 
     if (fromMenu === false) {
-      console.log(this.menu);
+      // console.log(this.menu);
     }
   }
 
@@ -212,8 +216,22 @@ export class MenuComponent implements OnInit, OnDestroy {
   menuToggle() {
     this.menuOpened = !this.menuOpened;
     this.menuParamsService.menuIsOpen.next(this.menuOpened);
+    this.checkMenuIsOpenAndSetContentWidth();
+    // this.windowParamsService.contentWidth.next()
 
-    console.log(this.menu);
+    // console.log(this.menu);
+  }
+
+  checkMenuIsOpenAndSetContentWidth() {
+    let contentWidth = this.innerWidth;
+
+    if (this.menuOpened) {
+      contentWidth = contentWidth - 360;
+      this.windowParamsService.contentWidth.next(contentWidth);
+    } else {
+      contentWidth = contentWidth - 100;
+      this.windowParamsService.contentWidth.next(contentWidth);
+    }
   }
 
   ngOnDestroy(): void {

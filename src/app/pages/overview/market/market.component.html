@@ -1,5 +1,6 @@
 @if (marketCoinsLoading) {
-<app-loading></app-loading>
+<app-loading (onReload)="getMarketCoins()"></app-loading>
+
 }@else {
 @if (marketCoins.length===0) {
 <app-no-result-found></app-no-result-found>

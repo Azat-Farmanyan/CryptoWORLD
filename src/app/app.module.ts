@@ -5,8 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { throttleInterceptor } from './interceptors/Throttle.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptors([throttleInterceptor]))],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

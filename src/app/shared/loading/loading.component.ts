@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
@@ -9,14 +9,22 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './loading.component.scss',
 })
 export class LoadingComponent implements OnInit {
+  @Output() onReload = new EventEmitter();
+
   loadingText: string = 'Loading';
   dots: string = '';
   interval: any;
+
+  returnBtn = false;
 
   ngOnInit() {
     this.interval = setInterval(() => {
       this.updateDots();
     }, 500);
+
+    setTimeout(() => {
+      this.returnBtn = true;
+    }, 2000);
   }
 
   ngOnDestroy() {
@@ -29,5 +37,9 @@ export class LoadingComponent implements OnInit {
     } else {
       this.dots = '';
     }
+  }
+
+  reload() {
+    this.onReload.emit();
   }
 }

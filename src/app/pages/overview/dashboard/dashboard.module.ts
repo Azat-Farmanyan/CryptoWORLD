@@ -5,6 +5,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { CryptoCardSmallComponent } from '../../../shared/crypto-card-small/crypto-card-small.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { NoResultFoundComponent } from '../../../shared/no-result-found/no-result-found.component';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -13,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardRoutingModule,
     CryptoCardSmallComponent,
     HttpClientModule,
+    LoadingComponent,
+    NoResultFoundComponent,
   ],
 })
 export class DashboardModule {}

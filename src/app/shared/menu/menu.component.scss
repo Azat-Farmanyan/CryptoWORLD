@@ -134,20 +134,26 @@
                                     line-height: normal;
                                 }
 
+
+
                                 &:hover {
-                                    outline: 2px solid #939393;
+                                    outline: 2px solid #d7d7d7;
                                     border-radius: 10px;
                                     background-color: #fff;
+                                }
 
+                                &:active {
+                                    background-color: #f2f2f2;
                                 }
                             }
 
                             .active {
-                                outline: 2px solid #939393;
+                                outline: 2px solid #d7d7d7;
                                 border-radius: 10px;
                                 background-color: #fff;
-
                             }
+
+
                         }
                     }
                 }

@@ -1,12 +1,12 @@
 .loading-block {
-    // text-align: center;
     border-radius: 20px;
     background: #FFF;
-    // display: flex;
-    // flex-direction: row;
-    // gap: 20px;
-    // align-items: center;
     padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 
     & img {
         width: 80px;
@@ -15,17 +15,14 @@
 
     .loading {
         display: inline-block;
-        margin-left: 10px;
         color: #111;
         font-family: Sora;
-        font-size: 26px;
+        font-size: 34px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         letter-spacing: -0.64px;
-        margin-bottom: 5px;
-        margin-top: 20px;
-
+        height: 50px;
     }
 
     .dots {
@@ -60,6 +57,19 @@
         80%,
         100% {
             content: '...';
+        }
+    }
+
+    .reload-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+
+        .reload {
+            font-weight: 400;
+            font-size: 18px;
+            color: #0096FF;
         }
     }
 }

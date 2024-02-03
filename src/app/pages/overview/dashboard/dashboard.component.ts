@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   trendingCoinsSubs: Subscription;
 
   trendingCoins: any[] = [];
-  trendCoinsLoading: boolean = true;
+  trendCoinsLoading: boolean = false;
   menuIsOpen: boolean = false;
 
   dashboardViewportWidth: number = 0;
@@ -33,6 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getTrendingCoins() {
+    this.trendCoinsLoading = true;
+
     this.trendingCoinsSubs = this.trendingService
       .getTrendingCoins(3)
 
