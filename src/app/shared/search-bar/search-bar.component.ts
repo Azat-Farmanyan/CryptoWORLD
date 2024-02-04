@@ -8,8 +8,8 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SearchService } from './search.service';
-import { Subscription } from 'rxjs';
+import { SearchService } from '../../services/search.service';
+import { Subscription, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar',

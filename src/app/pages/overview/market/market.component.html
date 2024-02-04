@@ -1,5 +1,5 @@
 @if (marketCoinsLoading) {
-<app-loading (onReload)="getMarketCoins()"></app-loading>
+<app-loading (onReload)="getMarketCoins()" [errorMessage]="errorMessage"></app-loading>
 
 }@else {
 @if (marketCoins.length===0) {

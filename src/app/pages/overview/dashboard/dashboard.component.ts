@@ -25,6 +25,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   trendCoinsLoading: boolean = false;
   menuIsOpen: boolean = false;
 
+  errorMessage: string = '';
+
   dashboardViewportWidth: number = 0;
 
   ngOnInit(): void {
@@ -38,12 +40,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.trendingCoinsSubs = this.trendingService
       .getTrendingCoins(3)
 
-      .subscribe((res) => {
-        console.log(res);
-
-        this.trendingCoins = res;
-        this.trendCoinsLoading = false;
-      });
+      .subscribe(
+        (res) => {
+          this.trendingCoins = res;
+          this.trendCoinsLoading = false;
+        },
+        (err) => {
+          this.errorMessage = err.message;
+        }
+      );
   }
 
   navigate(path: string) {
@@ -84,8 +89,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('destroy');
-
     if (this.menuIsOpenSubs) this.menuIsOpenSubs.unsubscribe();
 
     if (this.trendingCoinsSubs) this.trendingCoinsSubs.unsubscribe();

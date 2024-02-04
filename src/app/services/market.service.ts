@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { debounceTime, map } from 'rxjs';
 import { MarketHTTP } from '../core/constants';
 
 @Injectable({

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { coinsByIdHTTP } from '../core/constants';
+import { debounceTime } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

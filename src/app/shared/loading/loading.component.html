@@ -3,7 +3,9 @@
     <p class="loading">{{loadingText}}<span class="dots">{{dots}}</span></p>
 
     @if (returnBtn) {
-
+    @if (errorMessage) {
+    <p>{{errorMessage}}</p>
+    }
     <button class="reload-btn" (click)="reload()">
         <p class="reload">Reload page</p>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

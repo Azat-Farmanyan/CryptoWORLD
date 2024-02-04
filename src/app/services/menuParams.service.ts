@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Icon, Menu } from '../shared/menu/menu.component';
+import { SearchService } from './search.service';
 
 export interface activeRouteObject {
   activeRoute: string;
@@ -12,6 +13,7 @@ export interface activeRouteObject {
 })
 export class MenuParamsService {
   menuIsOpen = new BehaviorSubject<boolean>(false);
+  searchService = inject(SearchService);
 
   private activeRouteSubject = new BehaviorSubject<activeRouteObject>({
     activeRoute: '',

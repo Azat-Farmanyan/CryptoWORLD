@@ -229,7 +229,7 @@ export class MenuComponent implements OnInit, OnDestroy {
       contentWidth = contentWidth - 360;
       this.windowParamsService.contentWidth.next(contentWidth);
     } else {
-      contentWidth = contentWidth - 100;
+      contentWidth = contentWidth - 110;
       this.windowParamsService.contentWidth.next(contentWidth);
     }
   }

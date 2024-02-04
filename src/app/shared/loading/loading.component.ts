@@ -11,6 +11,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class LoadingComponent implements OnInit {
   @Output() onReload = new EventEmitter();
 
+  @Input() errorMessage: string = '';
+
   loadingText: string = 'Loading';
   dots: string = '';
   interval: any;
@@ -24,7 +26,7 @@ export class LoadingComponent implements OnInit {
 
     setTimeout(() => {
       this.returnBtn = true;
-    }, 2000);
+    }, 3000);
   }
 
   ngOnDestroy() {

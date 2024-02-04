@@ -1,5 +1,5 @@
 @if (trendCoinsLoading) {
-<app-loading (onReload)="getTrendingCoins()"></app-loading>
+<app-loading (onReload)="getTrendingCoins()" [errorMessage]="errorMessage"></app-loading>
 } @else {
 @if (trendingCoins.length===0) {
 <app-no-result-found></app-no-result-found>
