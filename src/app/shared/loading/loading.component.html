@@ -3,8 +3,9 @@
     <p class="loading">{{loadingText}}<span class="dots">{{dots}}</span></p>
 
     @if (returnBtn) {
+
     @if (errorMessage) {
-    <p>{{errorMessage}}</p>
+    <p style="color: red;">{{errorMessage}}</p>
     }
     <button class="reload-btn" (click)="reload()">
         <p class="reload">Reload page</p>

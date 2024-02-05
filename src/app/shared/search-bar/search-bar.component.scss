@@ -8,10 +8,15 @@
 
         & input {
             border-radius: 10px;
-            border: 1px solid #E3E3E3;
+            outline: 1px solid #E3E3E3;
             padding: 16px 18px;
             color: #111;
             width: 100%;
+            transition: all 0.2s ease-in-out;
+
+            &:focus {
+                outline: 1px solid #111;
+            }
         }
 
         .search-icon img {

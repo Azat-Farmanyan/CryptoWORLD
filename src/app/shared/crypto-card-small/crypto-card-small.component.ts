@@ -20,6 +20,8 @@ export class CryptoCardSmallComponent implements OnChanges {
   })
   isLoading: boolean = true;
 
+  @Input() showGraphic: boolean = false;
+
   changeIn24h: number = 0;
 
   ngOnChanges(changes: SimpleChanges): void {

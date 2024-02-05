@@ -30,7 +30,9 @@
             </div>
         </div>
         <div class="card-body">
+            @if (showGraphic ) {
             <div class="diagram"></div>
+            }
             <div class="crypto-currency-block">
                 @if (coinData?.current_price) {
                 <p class="price">{{ coinData?.current_price | currency:'$'}}</p>

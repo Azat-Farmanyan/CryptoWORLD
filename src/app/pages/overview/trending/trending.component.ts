@@ -4,6 +4,7 @@ import { Subscription, debounceTime } from 'rxjs';
 import { SearchService } from '../../../services/search.service';
 import { WindowParamsService } from '../../../services/windowParams.service';
 import { MenuParamsService } from '../../../services/menuParams.service';
+import { CoinsService } from '../../../services/coins.service';
 
 @Component({
   selector: 'app-trending',
@@ -13,6 +14,7 @@ import { MenuParamsService } from '../../../services/menuParams.service';
 export class TrendingComponent implements OnInit, OnDestroy {
   trendingService = inject(TrendingService);
   searchService = inject(SearchService);
+  coinsService = inject(CoinsService);
   windowParamsService = inject(WindowParamsService);
   MenuParamsService = inject(MenuParamsService);
 
@@ -37,10 +39,17 @@ export class TrendingComponent implements OnInit, OnDestroy {
       .getTrendingCoins()
       .subscribe(
         (res) => {
+          console.log(res);
+
           this.originalTrendingCoins = res;
           this.trendingCoins = res;
           this.trendCoinsLoading = false;
-          console.log(res);
+
+          // this.coinsService
+          //   .getCoinByID(this.trendingCoins[0].item.coin_id)
+          //   .subscribe((res) => {
+          //     console.log('coin: ', res);
+          //   });
 
           this.searchWordSubs = this.searchService.searchedWord.subscribe(
             (el) => {

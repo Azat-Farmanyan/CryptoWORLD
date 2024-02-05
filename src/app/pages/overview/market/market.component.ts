@@ -53,6 +53,8 @@ export class MarketComponent implements OnInit, OnDestroy {
         );
       },
       (err) => {
+        console.log(err);
+
         this.errorMessage = err.message;
       }
     );

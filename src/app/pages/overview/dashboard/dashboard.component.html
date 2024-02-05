@@ -1,5 +1,5 @@
-@if (trendCoinsLoading) {
-<app-loading (onReload)="getTrendingCoins()" [errorMessage]="errorMessage"></app-loading>
+@if (trendCoinsLoading || marketCoinsLoading) {
+<app-loading (onReload)="getData()" [errorMessage]="trendingErrorTxt ? trendingErrorTxt: marketErrorTxt"></app-loading>
 } @else {
 @if (trendingCoins.length===0) {
 <app-no-result-found></app-no-result-found>
@@ -19,6 +19,23 @@
             <div class="trending-body" [style.grid-template-columns]="getGridColumnStyles()">
                 @for (coin of trendingCoins; track coin.id) {
                 <app-crypto-card-small [coinData]="coin" [isLoading]="trendCoinsLoading"></app-crypto-card-small>
+                }
+            </div>
+        </div>
+
+        <div class="trending-block">
+            <h3 class="block-header">
+                <h3>Markets</h3>
+
+                <div (click)="navigate('markets')">
+                    <span>See all</span>
+                    <img src="../../../../assets/icons/see_all_arrow.svg" alt="see all">
+                </div>
+            </h3>
+
+            <div class="trending-body" [style.grid-template-columns]="getGridColumnStyles()">
+                @for (coin of marketCoins; track coin.id) {
+                <app-crypto-card-small [coinData]="coin" [isLoading]="marketCoinsLoading"></app-crypto-card-small>
                 }
             </div>
         </div>

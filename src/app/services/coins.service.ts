@@ -10,13 +10,10 @@ export class CoinsService {
   constructor(private http: HttpClient) {}
 
   getCoinByID(coinId: string) {
-    return this.http.get<any>(
-      coinsByIdHTTP + coinId
-      // {
-      // params: {
-      //   id: coinId,
-      // },
-      // }
-    );
+    return this.http.get<any>(coinsByIdHTTP + coinId, {
+      params: {
+        id: coinId,
+      },
+    });
   }
 }

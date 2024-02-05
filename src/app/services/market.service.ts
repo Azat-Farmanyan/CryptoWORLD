@@ -10,6 +10,10 @@ export class MarketService {
   constructor(private http: HttpClient) {}
 
   getMarketCoins(numItems?: number) {
-    return this.http.get<any>(MarketHTTP);
+    return this.http.get<any>(MarketHTTP).pipe(
+      map((res) => {
+        return numItems ? res.slice(0, numItems) : res;
+      })
+    );
   }
 }

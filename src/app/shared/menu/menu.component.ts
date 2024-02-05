@@ -102,7 +102,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   onResize(event: any) {
     this.windowParamsService.windowWidth.next(event.target.innerWidth);
 
-    if (event.target.innerWidth > 800) {
+    if (event.target.innerWidth > 900) {
       this.menuOpened = true;
       this.menuParamsService.menuIsOpen.next(true);
     } else {

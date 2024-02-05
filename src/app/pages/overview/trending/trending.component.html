@@ -39,7 +39,8 @@
         <div class="info-column">
             <div class="column-title">Price</div>
             @for (coin of trendingCoins; track coin._id) {
-            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            <div class="table-item" style="font-weight: 400;  font-size: 18px;  letter-spacing: -0.01em; color: #111;">
+                {{ coin?.item?.data?.price }}</div>
             }
         </div>
         <div class="info-column">
@@ -69,7 +70,7 @@
         <div class="info-column">
             <div class="column-title">Market Cap</div>
             @for (coin of trendingCoins; track coin._id) {
-            <div class="table-item">{{ coin?.item?.data?.price }}</div>
+            <div class="table-item">{{ coin?.item?.data?.market_cap }}</div>
             }
         </div>
     </div>
